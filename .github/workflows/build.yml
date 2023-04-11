@@ -19,7 +19,7 @@ jobs:
       - name: Publish Linux
         run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -p:PublishProfile=src/UNAHUR.WorkerService/Properties\PublishProfiles\linux-profile
       - name: Publish Windows
-        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -p:PublishProfile=src/UNAHUR.WorkerService/Properties\PublishProfiles\winows-profile
+        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -p:PublishProfile=src/UNAHUR.WorkerService/Properties\PublishProfiles\win-profile
       - name: Upload Windows
         uses: actions/upload-artifact@v3
         with:
