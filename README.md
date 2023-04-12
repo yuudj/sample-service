@@ -1,6 +1,13 @@
-# UNAHUR Message-Fun
+# UNAHUR Worker Service
 
-Este proyecto es una implementación simple de los patrones: [CQRS](https://learn.microsoft.com/en-us/azure/architecture/patterns/) y [arquitectura lambda](https://en.wikipedia.org/wiki/Lambda_architecture). A fin de proveer un ejemplo de base para ejercitar con una arquitectura de microservicios. 
+```bash
+dotnet publish -a win-x64
+```
+
+
+
+
+Este proyecto es una implementación simple de los patrones: [CQRS](https://learn.microsoft.com/en-us/azure/architecture/patterns/) y [arquitectura lambda](https://en.wikipedia.org/wiki/Lambda_architecture). A fin de proveer un ejemplo de base para ejercitar con una arquitectura de microservicios.
 
 _ARQUITECTURA_
 
