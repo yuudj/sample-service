@@ -23,14 +23,14 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj
       - name: Publish Linux
-        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -r linux-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }}
+        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -r linux-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false
       - name: Upload Linux
         uses: actions/upload-artifact@v3
         with:
           name: UNAHUR.WorkerService.linux-x64
           path: src/UNAHUR.WorkerService/bin/Release/net7.0/linux-x64/publish/
       - name: Publish Windows
-        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -r win-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }}
+        run: dotnet publish src/UNAHUR.WorkerService/UNAHUR.WorkerService.csproj -r win-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false
       - name: Upload Windows
         uses: actions/upload-artifact@v3
         with:
