@@ -182,3 +182,5 @@ nerdctl rm myrabbit
 [Monitoring a .NET application using OpenTelemetry - Meziantou's blog](https://www.meziantou.net/monitoring-a-dotnet-application-using-opentelemetry.htm)
 
 [Instrumenting a .NET web API using OpenTelemetry, Tempo, and Grafana Cloud | Grafana Labs](https://grafana.com/blog/2021/02/11/instrumenting-a-.net-web-api-using-opentelemetry-tempo-and-grafana-cloud/)
+
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
