@@ -23,16 +23,23 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj
       - name: Publish Linux
-        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r linux-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false
+        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r linux-x64 --self-contained -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false  -p:PublishSingleFile=true
       - name: Upload Linux
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: UNAHUR.SampleService.Api.linux-x64
           path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/linux-x64/publish/
+      - name: Publish Linux ARM
+        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r linux-arm64  --self-contained -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false  -p:PublishSingleFile=true
+      - name: Upload Linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: UNAHUR.SampleService.Api.linux-arm64
+          path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/linux-arm64/publish/
       - name: Publish Windows
-        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r win-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false
+        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r win-x64 --self-contained -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false  -p:PublishSingleFile=true
       - name: Upload Windows
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: UNAHUR.SampleService.Api.win-x64
           path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/win-x64/publish/
