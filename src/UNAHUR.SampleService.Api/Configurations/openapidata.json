@@ -1,0 +1,16 @@
+{
+  "SwaggerSettings": {
+    "Description": "Service Sample",
+    "Enable": true,
+    "Contact": {
+      "Email": "SampleService@UNAHUR.SampleService.com",
+      "Name": "SampleService team",
+      "Url": "https://UNAHUR.SampleService.com"
+    },
+    "License": {
+      "Name": "MIT License",
+      "Url": "https://opensource.org/license/mit/"
+    },
+    "Title": "SampleService API"
+  }
+}

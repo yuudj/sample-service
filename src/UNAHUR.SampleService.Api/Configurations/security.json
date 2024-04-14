@@ -1,0 +1,16 @@
+{
+  "JwtBearerOptions": {
+    "Authority": "http://keycloak.localdev.me:8080/realms/MessageFun",
+    "Audience": "MessageFun-realm", // ver que este nombre forma parte de JwtAuthentication.Authority y  KeycloakService.Realm
+    "RequireHttpsMetadata": false,
+    "TokenValidationParameters": {
+      "NameClaimType": "preferred_username",
+      "ValidateActor": "false",
+      "ValidateAudience": "false",
+      "ValidateIssuer": "false",
+      "ValidateIssuerSigningKey": "false",
+      "ValidateLifetime": "false",
+      "ValidateTokenReplay": "false"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+﻿{
+  "SwaggerSettings": {
+
+    "SwaggerUiOAuthSettings": {
+      "ClientId": "desa-cli",
+      "ClientSecret": ""
+    }
+  }
+}

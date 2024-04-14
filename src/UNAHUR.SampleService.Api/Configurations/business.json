@@ -1,0 +1,5 @@
+{
+  "MFBusinessConfig": {
+    "ConnectionString": "Host=localhost;Database=MessageFun; Username=MessageFun_user; Password=S3cr3t"
+  }
+}
