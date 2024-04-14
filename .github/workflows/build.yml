@@ -28,11 +28,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: UNAHUR.SampleService.Api.linux-x64
-          path: src/UNAHUR.SampleService.Api/bin/Release/net7.0/linux-x64/publish/
+          path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/linux-x64/publish/
       - name: Publish Windows
         run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r win-x64 -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false
       - name: Upload Windows
         uses: actions/upload-artifact@v3
         with:
           name: UNAHUR.SampleService.Api.win-x64
-          path: src/UNAHUR.SampleService.Api/bin/Release/net7.0/win-x64/publish/
+          path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/win-x64/publish/
