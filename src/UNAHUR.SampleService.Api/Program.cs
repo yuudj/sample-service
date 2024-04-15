@@ -12,6 +12,9 @@ using System;
 using System.Linq;
 using System.Text.Json.Serialization;
 using UNAHUR.SampleService.Infra.Observability;
+using System.Runtime.InteropServices;
+using Microsoft.Extensions.Hosting.Systemd;
+using Microsoft.Extensions.Hosting;
 
 public static class Program
 {
@@ -25,6 +28,19 @@ public static class Program
         // CREAR EL APP BUILDER,ES EL ENCARGADO DE CONFIGURAR LA INYECCION DE DEPENDENCIAS
         // Y LOS ORIGENES DE CONFIGURACION
         var builder = WebApplication.CreateBuilder(args);
+
+#if !DEBUG
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            builder.Host.UseSystemd();
+            
+        }
+        else {
+            builder.Host.UseWindowsService();
+        }
+#endif
+        
+
         var services = builder.Services;
         var config = builder.Configuration;
 
