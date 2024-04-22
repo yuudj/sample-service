@@ -71,6 +71,7 @@ jobs:
           name: UNAHUR.SampleService.Api.win-x64-msi
           path: dist/msi/UNAHUR.SampleService.Api.msi
   release:
+    permissions: write-all
     needs: [ build-win, build-linux]
     runs-on: ubuntu-latest
     steps:
