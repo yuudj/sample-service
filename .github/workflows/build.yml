@@ -16,7 +16,7 @@ jobs:
     name: Build Linux
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
@@ -40,7 +40,7 @@ jobs:
     name: Build Windows
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
@@ -59,14 +59,17 @@ jobs:
         with:
           name: UNAHUR.SampleService.Api.win-x64
           path: dist/win-64
+      - name: Upload Windows MSI
+        uses: actions/upload-artifact@v4
+        with:
+          name: UNAHUR.SampleService.Api.win-x64-msi
+          path: dist/msi
   release:
     needs: [ build-win, build-linux]
     runs-on: ubuntu-latest
     steps:
       - name: Get Artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: artifacts-build
       - name: Upload files
         uses: AButler/upload-release-assets@v2.0
         with: 
