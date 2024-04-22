@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Language="1033"
+            Manufacturer="UNAHUR"
+            Name="sample-service"
+            UpgradeCode="82f1aa75-c421-4a9d-beda-5466bfb5dcd1"
+            Version="1.0.0">
+    
+    <StandardDirectory Id="ProgramFilesFolder">
+      <Directory Id="INSTALLFOLDER" Name="sample-service" />
+    </StandardDirectory>
+
+    <ComponentGroup Id="Archivos" Directory="INSTALLFOLDER">
+      <Files Include="dist\win-64\**" >
+        <Exclude Files="dist\win-64\UNAHUR.SampleService.Api.exe" />
+      </Files>
+
+      <Component Id="WindowsServiceComponents" Guid="{F4AD8D74-3310-4141-8EE8-821FD139CC7C}">
+        <File Source="dist\win-64\UNAHUR.SampleService.Api.exe" />
+        <ServiceInstall 
+          Name="sample-service" 
+          DisplayName="~UNAHUR Sample-Service"
+          Type="ownProcess" 
+          Start="auto" 
+          ErrorControl="normal" />
+
+        <ServiceControl Name="sample-service" 
+          Start="install" 
+          Stop="uninstall" 
+          Remove="uninstall" />
+      </Component>
+    </ComponentGroup>
+
+    
+
+    
+
+    <MajorUpgrade DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="service">
+      <ComponentGroupRef Id="Archivos" />
+    </Feature>
+  </Package>
+  
+</Wix>

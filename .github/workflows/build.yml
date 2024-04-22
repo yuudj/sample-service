@@ -12,8 +12,8 @@ on:
     types: [published]
 
 jobs:
-  build:
-    name: Build
+  build-linux:
+    name: Build Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,10 +36,39 @@ jobs:
         with:
           name: UNAHUR.SampleService.Api.linux-arm64
           path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/linux-arm64/publish/
+  build-win:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: Install WiX
+        run: dotnet tool install --global wix
+      - name: Restore dependencies
+        run: dotnet restore src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj
       - name: Publish Windows
-        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -r win-x64 --self-contained -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false  -p:PublishSingleFile=true
+        run: dotnet publish src/UNAHUR.SampleService.Api/UNAHUR.SampleService.Api.csproj -o dist/win-64 -r win-x64 --self-contained -c Release --nologo --sc true --version-suffix ${{ github.run_number }} /p:DebugType=None /p:DebugSymbols=false  -p:PublishSingleFile=true
+      - name: Build WiX on Windows
+        run: wix build .\msi.wxs -o dist/msi/UNAHUR.SampleService.Api
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: UNAHUR.SampleService.Api.win-x64
-          path: src/UNAHUR.SampleService.Api/bin/Release/net8.0/win-x64/publish/
+          path: dist/win-64
+  release:
+    needs: [ build-win, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts-build
+      - name: Upload files
+        uses: AButler/upload-release-assets@v2.0
+        with: 
+          files: '*.zip;*.msi'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
